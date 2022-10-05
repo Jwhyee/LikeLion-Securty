@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mariadb://127.0.0.1:3306/security_exam_test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/security_exam_test?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
     password:
   jpa:
