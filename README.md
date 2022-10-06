@@ -40,4 +40,12 @@ public class RsData<T> {
 
 ### `data`의 사용 이유
 > GET /articles
-- 위 요청이 들어왔을 때 articles에 출력을 해줄 data를 담아서 보내줄 수 있다. 
+- 위 요청이 들어왔을 때 articles에 출력을 해줄 data를 담아서 보내줄 수 있다.
+
+## 가변 인자의 사용
+```java
+public static <K, V> Map<K, V> mapOf(Object... args) {
+    ...
+}
+```
+- 여러개의 데이터를 담을 수 있음
