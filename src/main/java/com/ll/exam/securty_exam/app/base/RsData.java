@@ -16,6 +16,10 @@ public class RsData<T> {
         return new RsData<>(resultCode, msg, null);
     }
 
+    public static <T> RsData<T> of(String resultCode, String msg, T data) {
+        return new RsData<>(resultCode, msg, data);
+    }
+
     public boolean isSuccess() {
         return resultCode.startsWith("S-1");
     }
