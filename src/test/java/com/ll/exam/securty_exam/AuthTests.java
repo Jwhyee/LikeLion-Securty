@@ -197,10 +197,8 @@ class AuthTests {
         resultActions
                 .andExpect(status().is2xxSuccessful());
 
+        // GET /member/me 에 응답 본문
         // MemberController me 메서드에서는 @AuthenticationPrincipal MemberContext memberContext 를 사용해서 현재 로그인 한 회원의 정보를 얻어야 한다.
-
-        // 추가
-        // /member/me 에 응답 본문
         /*
           {
             "resultCode": "S-1",
