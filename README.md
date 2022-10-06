@@ -1,6 +1,5 @@
 ## 멋쟁이 사자처럼
 ### JWT 연동 프로젝트
-- 연동되는 리포지토리 : [링크](https://github.com/Jwhyee/LikeLion-JWT-Exam)
 - 강의 리포지토리 : [링크](https://github.com/jhs512/app_2022_10_05)
 - 수업 자료 : [링크](https://wiken.io/ken/10698)
 
@@ -23,7 +22,7 @@ public class RsData<T> {
 
 ### `data`의 사용 이유
 > GET /articles
-- 위 요청이 들어왔을 때 articles에 출력을 해줄 data를 담아서 보내줄 수 있다.
+- 위 요청이 들어왔을 때 `articles`에 출력을 해줄 `data`를 담아서 보내줄 수 있다.
 
 ## `Util` 클래스
 ### `Generic` 사용
@@ -53,5 +52,20 @@ public static <K, V> Map<K, V> mapOf(Object... args) {
     "fail": false
 }
 ```
-- 위와 같이 data에는 여러 정보가 들어갈 수 있어야한다.
-- 때문에 가변인자를 사용해 길이의 제한을 두지 않고, 여러 정보를 추가해준다. 
+- 위와 같이 `data`에는 여러 정보가 들어갈 수 있어야한다.
+- 때문에 가변인자를 사용해 길이의 제한을 두지 않고, 여러 정보를 추가해준다.
+
+## `JWT` 사용
+> POST /member/login
+
+### Spring Security 로그인
+- 회원 정보가 일치하는지 확인
+- 세션 변수 생성 -> 시큐리티 방식
+> `@AuthenticationPrincipal MemberContext memberContext`는 세션에서 데이터를 꺼내옴
+
+### JWT 로그인
+> POST /member/login
+- 회원 정보가 일치하는지 확인
+- `JWT` 형식의 `accessToken`을 발급
+> `header`에 `Authorization : Bearer accessToken`로 저장됌
+> 이후 세선 정보를 추가해줘야지 `Security`에서 제공하는 어노테이션 사용 가능
