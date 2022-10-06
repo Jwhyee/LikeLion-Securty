@@ -4,24 +4,7 @@
 - 강의 리포지토리 : [링크](https://github.com/jhs512/app_2022_10_05)
 - 수업 자료 : [링크](https://wiken.io/ken/10698)
 
-### RsData, Util 클래스에 `Generic` 사용
-```java
-// RsData
-public class RsData<T> {
-    private String resultCode;
-    private String msg;
-    private T data;
-    ...
-}
-
-// Util.spring
-public static <T> ResponseEntity<RsData> responseEntityOf(RsData<T> rsData) {
-    return responseEntityOf(rsData, null);
-}
-```
-- 데이터를 한정적으로 지정해서 사용해주기 위해 사용
-
-## `RsData` 분석
+## `RsData` 클래스
 ```java
 public class RsData<T> {
     private String resultCode;
@@ -42,10 +25,33 @@ public class RsData<T> {
 > GET /articles
 - 위 요청이 들어왔을 때 articles에 출력을 해줄 data를 담아서 보내줄 수 있다.
 
-## 가변 인자의 사용
+## `Util` 클래스
+### `Generic` 사용
+```java
+// Util.spring
+public static <T> ResponseEntity<RsData> responseEntityOf(RsData<T> rsData) {
+    return responseEntityOf(rsData, null);
+}
+```
+- 데이터를 한정적으로 지정해서 사용해주기 위해 사용
+
+### 가변인자 사용
 ```java
 public static <K, V> Map<K, V> mapOf(Object... args) {
     ...
 }
 ```
-- 여러개의 데이터를 담을 수 있음
+```json
+{
+    "resultCode": "S-1",
+    "msg": "로그인 성공, Access Token을 발급합니다.",
+    "data": {
+        "Authentication": "JWT_Access_Token",
+        "username": "abc123"
+    },
+    "success": true,
+    "fail": false
+}
+```
+- 위와 같이 data에는 여러 정보가 들어갈 수 있어야한다.
+- 때문에 가변인자를 사용해 길이의 제한을 두지 않고, 여러 정보를 추가해준다. 
