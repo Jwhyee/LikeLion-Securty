@@ -2,6 +2,7 @@ package com.ll.exam.securty_exam.app.controller;
 
 import com.ll.exam.securty_exam.app.domain.Member;
 import com.ll.exam.securty_exam.app.service.MemberService;
+import com.ll.exam.securty_exam.app.util.Util;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -16,10 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/member")
+@RequiredArgsConstructor
 public class MemberController {
-
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
 
@@ -29,19 +29,20 @@ public class MemberController {
             return new ResponseEntity<>(null, null, HttpStatus.BAD_REQUEST);
         }
 
-        Member member = memberService.findByUsername(loginDto.username).orElse(null);
+        Member member = memberService.findByUsername(loginDto.getUsername()).orElse(null);
+
         if (member == null) {
             return new ResponseEntity<>(null, null, HttpStatus.BAD_REQUEST);
         }
+
         if (!passwordEncoder.matches(loginDto.getPassword(), member.getPassword())) {
             return new ResponseEntity<>(null, null, HttpStatus.BAD_REQUEST);
         }
 
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Authentication", "JWT 키");
-        String body = String.valueOf(loginDto);
+        headers.set("Authentication", "JWT_Access_Token");
 
-        return new ResponseEntity<>(body, headers, HttpStatus.OK);
+        return Util.spring.responseEntityOf(headers);
     }
 
     @Data
@@ -50,9 +51,7 @@ public class MemberController {
         private String password;
 
         public boolean isNotValid() {
-            return username == null || username.trim().length() == 0 || password == null || password.trim().length() == 0;
+            return username == null || password == null || username.trim().length() == 0 || password.trim().length() == 0;
         }
     }
-
-
 }
