@@ -3,6 +3,7 @@ package com.ll.exam.securty_exam.app.service;
 import com.ll.exam.securty_exam.app.domain.article.Article;
 import com.ll.exam.securty_exam.app.domain.member.Member;
 import com.ll.exam.securty_exam.app.domain.member.MemberContext;
+import com.ll.exam.securty_exam.app.web.dto.ArticleModifyDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,17 @@ public class ArticleService {
     }
 
     public boolean actorCanDelete(MemberContext memberContext, Article article) {
+        return memberContext.getId() == article.getAuthor().getId();
+    }
+
+    public void modify(Article article, ArticleModifyDto articleModifyDto) {
+        article.setSubject(articleModifyDto.getSubject());
+        article.setContent(articleModifyDto.getContent());
+
+        articleRepository.save(article);
+    }
+
+    public boolean actorCanModify(MemberContext memberContext, Article article) {
         return memberContext.getId() == article.getAuthor().getId();
     }
 }
