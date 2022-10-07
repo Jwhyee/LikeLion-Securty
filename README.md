@@ -69,3 +69,20 @@ public static <K, V> Map<K, V> mapOf(Object... args) {
 - `JWT` 형식의 `accessToken`을 발급
 > `header`에 `Authorization : Bearer accessToken`로 저장됌
 > 이후 세선 정보를 추가해줘야지 `Security`에서 제공하는 어노테이션 사용 가능
+
+## REST API 사용
+### 기존 방식
+- 게시물 목록 : `GET` http://localhost:8080/article/list
+- 게시물 등록(폼) : `GET` http://localhost:8080/article/write
+- 게시물 등록 : `POST` http://localhost:8080/article/write
+- 게시물 단건 조회 : `GET` http://localhost:8080/article/1
+- 게시물 수정(폼) : `GET` http://localhost:8080/article/1/modify
+- 게시물 수정 : `POST` http://localhost:8080/article/1/modify
+- 게시물 삭제 : `GET` http://localhost:8080/article/1/delete
+
+### REST 방식
+- 게시물 목록 : `GET` http://localhost:8080/articles
+- 게시물 등록 : `POST` http://localhost:8080/articles
+- 게시물 단건 조회 : `GET` http://localhost:8080/article/1
+- 게시물 수정 : `PATCH` http://localhost:8080/article/1
+- 게시물 삭제 : `DELETE` http://localhost:8080/article/1
