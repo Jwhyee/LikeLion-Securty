@@ -1,5 +1,6 @@
 package com.ll.exam.securty_exam.app.base;
 
+import com.ll.exam.securty_exam.app.domain.MemberContext;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +19,14 @@ public class RsData<T> {
 
     public static <T> RsData<T> of(String resultCode, String msg, T data) {
         return new RsData<>(resultCode, msg, data);
+    }
+
+    public static <T> RsData<T> successOf(T data) {
+        return of("S-1", "성공", data);
+    }
+
+    public static <T> RsData<T> failOf(T data) {
+        return of("F-1", "실패", data);
     }
 
     public boolean isSuccess() {
