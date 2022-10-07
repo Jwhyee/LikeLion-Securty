@@ -2,10 +2,12 @@ package com.ll.exam.securty_exam.app.service;
 
 import com.ll.exam.securty_exam.app.domain.article.Article;
 import com.ll.exam.securty_exam.app.domain.member.Member;
+import com.ll.exam.securty_exam.app.domain.member.MemberContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,5 +27,17 @@ public class ArticleService {
 
     public List<Article> findAll() {
         return articleRepository.findAllByOrderByIdDesc();
+    }
+
+    public Optional<Article> findById(Long id) {
+        return articleRepository.findById(id);
+    }
+
+    public void delete(Article article) {
+        articleRepository.delete(article);
+    }
+
+    public boolean actorCanDelete(MemberContext memberContext, Article article) {
+        return memberContext.getId() == article.getAuthor().getId();
     }
 }
