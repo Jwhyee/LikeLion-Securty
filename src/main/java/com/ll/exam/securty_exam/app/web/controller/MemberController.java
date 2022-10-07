@@ -1,23 +1,17 @@
-package com.ll.exam.securty_exam.app.controller;
+package com.ll.exam.securty_exam.app.web.controller;
 
 import com.ll.exam.securty_exam.app.base.RsData;
-import com.ll.exam.securty_exam.app.config.jwt.JwtProvider;
-import com.ll.exam.securty_exam.app.domain.Member;
-import com.ll.exam.securty_exam.app.domain.MemberContext;
-import com.ll.exam.securty_exam.app.dto.LoginDto;
+import com.ll.exam.securty_exam.app.domain.member.Member;
+import com.ll.exam.securty_exam.app.domain.member.MemberContext;
+import com.ll.exam.securty_exam.app.web.dto.LoginDto;
 import com.ll.exam.securty_exam.app.service.MemberService;
 import com.ll.exam.securty_exam.app.util.Util;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/member")

@@ -1,4 +1,4 @@
-package com.ll.exam.securty_exam.app.domain;
+package com.ll.exam.securty_exam.app.domain.member;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;

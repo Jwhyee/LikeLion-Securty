@@ -1,8 +1,8 @@
 package com.ll.exam.securty_exam.app.service;
 
 import com.ll.exam.securty_exam.app.config.jwt.JwtProvider;
-import com.ll.exam.securty_exam.app.domain.Member;
-import com.ll.exam.securty_exam.app.repository.MemberRepository;
+import com.ll.exam.securty_exam.app.domain.member.Member;
+import com.ll.exam.securty_exam.app.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

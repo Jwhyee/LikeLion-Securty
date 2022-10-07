@@ -1,4 +1,4 @@
-package com.ll.exam.securty_exam.app.dto;
+package com.ll.exam.securty_exam.app.web.dto;
 
 import lombok.Data;
 

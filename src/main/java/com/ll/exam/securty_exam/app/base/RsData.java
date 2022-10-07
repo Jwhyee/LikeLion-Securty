@@ -1,6 +1,5 @@
 package com.ll.exam.securty_exam.app.base;
 
-import com.ll.exam.securty_exam.app.domain.MemberContext;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

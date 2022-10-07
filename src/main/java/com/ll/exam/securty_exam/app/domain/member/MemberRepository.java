@@ -1,6 +1,5 @@
-package com.ll.exam.securty_exam.app.repository;
+package com.ll.exam.securty_exam.app.domain.member;
 
-import com.ll.exam.securty_exam.app.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
