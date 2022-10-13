@@ -41,18 +41,19 @@ public class MemberController {
 
     @PostMapping("/login")
     public ResponseEntity<RsData> login(@Valid @RequestBody LoginDto loginDto) {
-
         Member member = memberService.findByUsername(loginDto.getUsername()).orElse(null);
 
         if (member == null) {
             return Util.spring.responseEntityOf(RsData.of("F-2", "일치하는 회원이 존재하지 않습니다."));
         }
 
-        if (!passwordEncoder.matches(loginDto.getPassword(), member.getPassword())) {
+        if (passwordEncoder.matches(loginDto.getPassword(), member.getPassword()) == false) {
             return Util.spring.responseEntityOf(RsData.of("F-3", "비밀번호가 일치하지 않습니다."));
         }
 
-        String accessToken = memberService.generateAccessToken(member);
+        log.debug("Util.json.toStr(member.getAccessTokenClaims()) : " + Util.json.toStr(member.getAccessTokenClaims()));
+
+        String accessToken = memberService.genAccessToken(member);
 
         return Util.spring.responseEntityOf(
                 RsData.of(
@@ -62,7 +63,7 @@ public class MemberController {
                                 "accessToken", accessToken
                         )
                 ),
-                Util.spring.httpHeadersOf("Authentication", "JWT_Access_Token")
+                Util.spring.httpHeadersOf("Authentication", accessToken)
         );
     }
 }

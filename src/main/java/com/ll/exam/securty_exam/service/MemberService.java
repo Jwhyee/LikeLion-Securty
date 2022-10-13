@@ -60,7 +60,7 @@ public class MemberService {
     }
 
     public Member getByUsername__cached(String username) {
-        MemberService thisObj = (MemberService) AppConfig.getContext().getBean("memberService");
+        MemberService thisObj = (MemberService)AppConfig.getContext().getBean("memberService");
         Map<String, Object> memberMap = thisObj.getMemberMapByUsername__cached(username);
 
         return Member.fromMap(memberMap);
