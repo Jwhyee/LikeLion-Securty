@@ -1,6 +1,7 @@
 package com.ll.exam.securty_exam;
 
 import com.ll.exam.securty_exam.app.cache.CacheTestService;
+import com.ll.exam.securty_exam.app.cache.PersonCache;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,5 +110,20 @@ class CacheTests {
         rs = cacheTestService.plus(3, 6);
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
+    }
+
+    @Test
+    @DisplayName("레퍼런스 매개변수")
+    void t5() throws Exception{
+        PersonCache p1 = new PersonCache(1, "홍길동1");
+        PersonCache p2 = new PersonCache(1, "홍길동2");
+
+        System.out.println(p1.equals(p2));
+
+        String personName = cacheTestService.getName(p1, 5);
+        System.out.println("personName = " + personName);
+
+        personName = cacheTestService.getName(p2, 10);
+        System.out.println("personName = " + personName);
     }
 }

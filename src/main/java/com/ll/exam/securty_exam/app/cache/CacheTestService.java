@@ -31,4 +31,10 @@ public class CacheTestService {
         System.out.println("캐시 생성");
         return a + b;
     }
+
+    @Cacheable(value = "getName", key = "#p.id")
+    public String getName(PersonCache p, int random) {
+        System.out.println("=== getName 호출 ===");
+        return p.getName();
+    }
 }
