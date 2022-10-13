@@ -32,6 +32,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String bearerToken = request.getHeader("Authorization");
 
+        // 1차 체크(정보가 변조되지 않았는지 체크)
         if (bearerToken != null) {
             String token = bearerToken.substring("Bearer ".length());
 
@@ -39,7 +40,10 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 Map<String, Object> claims = jwtProvider.getClaims(token);
                 // 캐시(레디스)를 통해서
                 Member member = memberService.findByUsername((String) claims.get("username")).get();
-                forceAuthentication(member);
+                // 2차 체크(화이트리스트에 포함되는지)
+                if ( memberService.verifyWithWhiteList(member, token) ) {
+                    forceAuthentication(member);
+                }
             }
         }
 

@@ -6,6 +6,8 @@ import com.ll.exam.securty_exam.app.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 
@@ -32,8 +34,20 @@ public class MemberService {
         return memberRepository.findByUsername(username);
     }
 
+    @Transactional
     public String generateAccessToken(Member member) {
-        return jwtProvider.generateAccessToken(member.getAccessTokenClaims(), 60 * 60 * 24 * 90);
+        String accessToken = member.getAccessToken();
+
+        if (!StringUtils.hasLength(accessToken)) {
+            accessToken = jwtProvider.generateAccessToken(member.getAccessTokenClaims(), 60L * 60 * 24 * 365 * 100);
+            member.setAccessToken(accessToken);
+        }
+
+        return accessToken;
+    }
+
+    public boolean verifyWithWhiteList(Member member, String token) {
+        return member.getAccessToken().equals(token);
     }
 
     @Cacheable("key1")
