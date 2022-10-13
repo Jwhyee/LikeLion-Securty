@@ -6,6 +6,7 @@ import com.ll.exam.securty_exam.app.domain.member.MemberContext;
 import com.ll.exam.securty_exam.app.web.dto.LoginDto;
 import com.ll.exam.securty_exam.app.service.MemberService;
 import com.ll.exam.securty_exam.app.util.Util;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import javax.validation.Valid;
 @RequestMapping("/member")
 @RequiredArgsConstructor
 @Slf4j
+@Tag(name = "MemberController", description = "로그인 기능과 로그인 된 회원의 정보를 제공 기능을 담당하는 컨트롤러")
 public class MemberController {
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;

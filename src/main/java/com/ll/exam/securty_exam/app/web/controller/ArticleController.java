@@ -6,6 +6,7 @@ import com.ll.exam.securty_exam.app.domain.member.MemberContext;
 import com.ll.exam.securty_exam.app.service.ArticleService;
 import com.ll.exam.securty_exam.app.util.Util;
 import com.ll.exam.securty_exam.app.web.dto.ArticleModifyDto;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -53,7 +54,7 @@ public class ArticleController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<RsData> delete (@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext) {
+    public ResponseEntity<RsData> delete (@PathVariable Long id, @Parameter(hidden = true) @AuthenticationPrincipal MemberContext memberContext) {
         Article article = articleService.findById(id).orElse(null);
         if (article == null) {
             return Util.spring.responseEntityOf(
