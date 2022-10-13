@@ -42,4 +42,27 @@ class CacheTests {
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
     }
+
+    @Test
+    @DisplayName("캐시 사용, 삭제, 생성")
+    void t2() {
+        int rs = memberService.getCachedInt();
+        assertThat(rs).isGreaterThan(0);
+        System.out.println("rs = " + rs);
+
+        rs = memberService.getCachedInt();
+        assertThat(rs).isGreaterThan(0);
+        System.out.println("rs = " + rs);
+
+        rs = memberService.getCachedInt();
+        assertThat(rs).isGreaterThan(0);
+        System.out.println("rs = " + rs);
+
+        memberService.deleteCachedInt();
+
+        rs = memberService.getCachedInt();
+        assertThat(rs).isGreaterThan(0);
+        System.out.println("rs = " + rs);
+
+    }
 }

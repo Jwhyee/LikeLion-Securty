@@ -4,6 +4,7 @@ import com.ll.exam.securty_exam.app.config.jwt.JwtProvider;
 import com.ll.exam.securty_exam.app.domain.member.Member;
 import com.ll.exam.securty_exam.app.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,5 +55,10 @@ public class MemberService {
     public int getCachedInt() {
         System.out.println("호출됨");
         return 5;
+    }
+
+    @CacheEvict("key1")
+    public void deleteCachedInt() {
+        System.out.println("삭제됨");
     }
 }

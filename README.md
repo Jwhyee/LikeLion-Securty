@@ -170,7 +170,7 @@ public String generateAccessToken(Member member) {
 > `Spring Boot`는 외부 캐시를 지정하지 않으면 `Map`과 같은 내부 메모리 캐시를 사용한다.
 > `Application`에서 `@EnableCaching` 어노테이션을 사용한다.
 
-### 캐시 예제
+### 캐시 생성 예제
 ```java
 // MemberService
 @Cacheable("key1")
@@ -197,6 +197,36 @@ void t1() {
 > 위와 같이 `@Cachable("keyName")`을 사용하면 처음 호출이 될 때 `keyName`에 `return` 값을 저장하고,<br>
 > 다음 호출이 될 때부터는 함수를 다시 실행하는 것이 아닌 저장된 `keyName`의 `value`를 불러오게 된다.
 
+### 캐시 삭제 예제
+```java
+@CacheEvict("key1")
+public void deleteCachedInt() {
+    System.out.println("삭제됨");
+}
+```
+```java
+@Test
+@DisplayName("캐시 사용, 삭제, 생성")
+void t2() {
+    // 캐시 생성
+    int rs = memberService.getCachedInt();
+    assertThat(rs).isGreaterThan(0);
+    System.out.println("rs = " + rs);
+
+    // 캐시 사용
+    rs = memberService.getCachedInt();
+    assertThat(rs).isGreaterThan(0);
+    System.out.println("rs = " + rs);
+
+    // 캐시 삭제
+    memberService.deleteCachedInt();
+
+    // 캐시 생성
+    rs = memberService.getCachedInt();
+    assertThat(rs).isGreaterThan(0);
+    System.out.println("rs = " + rs);
+}
+```
 ---
 ## Redis
 > Redis는 key : value로 이루어진 NoSQL이다.
