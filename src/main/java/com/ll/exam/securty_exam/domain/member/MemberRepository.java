@@ -1,4 +1,4 @@
-package com.ll.exam.securty_exam.app.domain.member;
+package com.ll.exam.securty_exam.domain.member;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,8 +1,8 @@
 package com.ll.exam.securty_exam.app.base;
 
-import com.ll.exam.securty_exam.app.domain.member.Member;
-import com.ll.exam.securty_exam.app.service.ArticleService;
-import com.ll.exam.securty_exam.app.service.MemberService;
+import com.ll.exam.securty_exam.domain.member.Member;
+import com.ll.exam.securty_exam.service.ArticleService;
+import com.ll.exam.securty_exam.service.MemberService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

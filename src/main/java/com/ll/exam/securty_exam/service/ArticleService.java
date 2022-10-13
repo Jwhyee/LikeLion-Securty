@@ -1,9 +1,9 @@
-package com.ll.exam.securty_exam.app.service;
+package com.ll.exam.securty_exam.service;
 
-import com.ll.exam.securty_exam.app.domain.article.Article;
-import com.ll.exam.securty_exam.app.domain.member.Member;
-import com.ll.exam.securty_exam.app.domain.member.MemberContext;
-import com.ll.exam.securty_exam.app.web.dto.ArticleModifyDto;
+import com.ll.exam.securty_exam.domain.article.Article;
+import com.ll.exam.securty_exam.domain.member.Member;
+import com.ll.exam.securty_exam.domain.member.MemberContext;
+import com.ll.exam.securty_exam.web.dto.ArticleModifyDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

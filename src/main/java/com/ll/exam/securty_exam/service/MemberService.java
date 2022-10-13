@@ -1,12 +1,9 @@
-package com.ll.exam.securty_exam.app.service;
+package com.ll.exam.securty_exam.service;
 
 import com.ll.exam.securty_exam.app.config.jwt.JwtProvider;
-import com.ll.exam.securty_exam.app.domain.member.Member;
-import com.ll.exam.securty_exam.app.domain.member.MemberRepository;
+import com.ll.exam.securty_exam.domain.member.Member;
+import com.ll.exam.securty_exam.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;

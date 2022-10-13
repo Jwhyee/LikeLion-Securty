@@ -1,10 +1,10 @@
-package com.ll.exam.securty_exam.app.web.controller;
+package com.ll.exam.securty_exam.web.controller;
 
 import com.ll.exam.securty_exam.app.base.RsData;
-import com.ll.exam.securty_exam.app.domain.member.Member;
-import com.ll.exam.securty_exam.app.domain.member.MemberContext;
-import com.ll.exam.securty_exam.app.web.dto.LoginDto;
-import com.ll.exam.securty_exam.app.service.MemberService;
+import com.ll.exam.securty_exam.domain.member.Member;
+import com.ll.exam.securty_exam.domain.member.MemberContext;
+import com.ll.exam.securty_exam.web.dto.LoginDto;
+import com.ll.exam.securty_exam.service.MemberService;
 import com.ll.exam.securty_exam.app.util.Util;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

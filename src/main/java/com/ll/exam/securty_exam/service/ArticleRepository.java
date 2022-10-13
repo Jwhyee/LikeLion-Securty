@@ -1,7 +1,7 @@
-package com.ll.exam.securty_exam.app.service;
+package com.ll.exam.securty_exam.service;
 
 
-import com.ll.exam.securty_exam.app.domain.article.Article;
+import com.ll.exam.securty_exam.domain.article.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

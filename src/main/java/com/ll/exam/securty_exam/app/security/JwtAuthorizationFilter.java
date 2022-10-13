@@ -1,16 +1,14 @@
 package com.ll.exam.securty_exam.app.security;
 
 import com.ll.exam.securty_exam.app.config.jwt.JwtProvider;
-import com.ll.exam.securty_exam.app.domain.member.Member;
-import com.ll.exam.securty_exam.app.domain.member.MemberContext;
-import com.ll.exam.securty_exam.app.service.MemberService;
+import com.ll.exam.securty_exam.domain.member.Member;
+import com.ll.exam.securty_exam.domain.member.MemberContext;
+import com.ll.exam.securty_exam.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 

@@ -1,4 +1,4 @@
-package com.ll.exam.securty_exam.app.web.dto;
+package com.ll.exam.securty_exam.web.dto;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,6 +1,6 @@
 package com.ll.exam.securty_exam;
 
-import com.ll.exam.securty_exam.app.service.CacheTestService;
+import com.ll.exam.securty_exam.app.cache.CacheTestService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

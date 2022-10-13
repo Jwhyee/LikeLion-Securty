@@ -1,4 +1,4 @@
-package com.ll.exam.securty_exam.app.domain.member;
+package com.ll.exam.securty_exam.domain.member;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ll.exam.securty_exam.app.base.BaseEntity;

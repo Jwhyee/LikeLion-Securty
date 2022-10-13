@@ -1,4 +1,4 @@
-package com.ll.exam.securty_exam.app.service;
+package com.ll.exam.securty_exam.app.cache;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;

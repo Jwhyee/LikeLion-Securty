@@ -1,11 +1,11 @@
-package com.ll.exam.securty_exam.app.web.controller;
+package com.ll.exam.securty_exam.web.controller;
 
 import com.ll.exam.securty_exam.app.base.RsData;
-import com.ll.exam.securty_exam.app.domain.article.Article;
-import com.ll.exam.securty_exam.app.domain.member.MemberContext;
-import com.ll.exam.securty_exam.app.service.ArticleService;
+import com.ll.exam.securty_exam.domain.article.Article;
+import com.ll.exam.securty_exam.domain.member.MemberContext;
+import com.ll.exam.securty_exam.service.ArticleService;
 import com.ll.exam.securty_exam.app.util.Util;
-import com.ll.exam.securty_exam.app.web.dto.ArticleModifyDto;
+import com.ll.exam.securty_exam.web.dto.ArticleModifyDto;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
