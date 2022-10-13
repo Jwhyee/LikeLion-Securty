@@ -83,21 +83,30 @@ class CacheTests {
     }
 
     @Test
-    @DisplayName("캐시 조건 파라미터")
+    @DisplayName("캐시 Key는 Parameter로 자동 지정된다.")
     void t4() {
+        // 캐시 생성(rs = 9)
         int rs = cacheTestService.plus(3, 6);
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
 
+        // 캐시 사용(rs = 9)
         rs = cacheTestService.plus(3, 6);
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
 
+        // 캐시 생성(rs = 7)
         rs = cacheTestService.plus(5, 2);
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
 
+        // 캐시 사용(rs = 7)
         rs = cacheTestService.plus(5, 2);
+        assertThat(rs).isGreaterThan(0);
+        System.out.println("rs = " + rs);
+
+        // 캐시 사용(rs = 9)
+        rs = cacheTestService.plus(3, 6);
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
     }
