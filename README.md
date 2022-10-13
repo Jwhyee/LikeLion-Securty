@@ -208,12 +208,12 @@ public void deleteCachedInt() {
 @Test
 @DisplayName("캐시 사용, 삭제, 생성")
 void t2() {
-    // 캐시 생성
+    // 캐시 생성(rs = 5)
     int rs = memberService.getCachedInt();
     assertThat(rs).isGreaterThan(0);
     System.out.println("rs = " + rs);
 
-    // 캐시 사용
+    // 캐시 사용(rs = 5)
     rs = memberService.getCachedInt();
     assertThat(rs).isGreaterThan(0);
     System.out.println("rs = " + rs);
@@ -221,7 +221,41 @@ void t2() {
     // 캐시 삭제
     memberService.deleteCachedInt();
 
-    // 캐시 생성
+    // 캐시 생성(rs = 5)
+    rs = memberService.getCachedInt();
+    assertThat(rs).isGreaterThan(0);
+    System.out.println("rs = " + rs);
+}
+```
+
+### 캐시 수정 예제
+```java
+@CachePut("key1")
+public int updateCachedInt() {
+    System.out.println("수정됨");
+    return 10;
+}
+```
+```java
+@Test
+@DisplayName("캐시 사용, 삭제, 생성")
+void t2() {
+    // 캐시 생성(rs = 5)
+    int rs = memberService.getCachedInt();
+    assertThat(rs).isGreaterThan(0);
+    System.out.println("rs = " + rs);
+    
+    // 캐시 사용(rs = 5)
+    rs = memberService.getCachedInt();
+    assertThat(rs).isGreaterThan(0);
+    System.out.println("rs = " + rs);
+
+    // 캐시 수정(rs = 10)
+    rs = memberService.updateCachedInt();
+    assertThat(rs).isGreaterThan(0);
+    System.out.println("rs = " + rs);
+
+    // 캐시 사용(rs = 10)
     rs = memberService.getCachedInt();
     assertThat(rs).isGreaterThan(0);
     System.out.println("rs = " + rs);

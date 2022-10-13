@@ -5,6 +5,7 @@ import com.ll.exam.securty_exam.app.domain.member.Member;
 import com.ll.exam.securty_exam.app.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,5 +61,11 @@ public class MemberService {
     @CacheEvict("key1")
     public void deleteCachedInt() {
         System.out.println("삭제됨");
+    }
+
+    @CachePut("key1")
+    public int updateCachedInt() {
+        System.out.println("수정됨");
+        return 10;
     }
 }
