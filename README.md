@@ -286,3 +286,19 @@ brew install redis
 brew services start redis
 redis-cli
 ```
+
+### Spring 프로젝트와 연동
+```bash
+# build.gradle
+implementation 'org.springframework.boot:spring-boot-starter-cache'
+implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+```
+```yaml
+# application.yml
+spring:
+  cache:
+    type: redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
+```
