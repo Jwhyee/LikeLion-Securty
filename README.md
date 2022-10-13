@@ -2,7 +2,9 @@
 - 강의 리포지토리 : [링크](https://github.com/jhs512/app_2022_10_05)
 - 수업 자료 : [링크](https://wiken.io/ken/10698)
 
-## `RsData` 클래스
+## 특정 클래스에 대한 설명 💬
+### `RsData` 클래스
+> `RestController`에서 Success/Fail에 대한 여부를 반환해주기 위한 클래스
 ```java
 public class RsData<T> {
     private String resultCode;
@@ -23,7 +25,11 @@ public class RsData<T> {
 > GET /articles
 - 위 요청이 들어왔을 때 `articles`에 출력을 해줄 `data`를 담아서 보내줄 수 있다.
 
-## `Util` 클래스
+---
+
+### `Util` 클래스
+> `Json`, `HTTP`과 관련된 처리를 해주는 클래스 
+
 ### `Generic` 사용
 ```java
 // Util.spring
@@ -35,6 +41,7 @@ public static <T> ResponseEntity<RsData> responseEntityOf(RsData<T> rsData) {
 
 ### 가변인자 사용
 ```java
+// Util.json
 public static <K, V> Map<K, V> mapOf(Object... args) {
     ...
 }
@@ -54,22 +61,12 @@ public static <K, V> Map<K, V> mapOf(Object... args) {
 - 위와 같이 `data`에는 여러 정보가 들어갈 수 있어야한다.
 - 때문에 가변인자를 사용해 길이의 제한을 두지 않고, 여러 정보를 추가해준다.
 
-## `JWT` 사용
-> POST /member/login
+---
 
-### Spring Security 로그인
-- 회원 정보가 일치하는지 확인
-- 세션 변수 생성 -> 시큐리티 방식
-> `@AuthenticationPrincipal MemberContext memberContext`는 세션에서 데이터를 꺼내옴
+## 특정 기술에 대한 설명 💬
 
-### JWT 로그인
-> POST /member/login
-- 회원 정보가 일치하는지 확인
-- `JWT` 형식의 `accessToken`을 발급
-> `header`에 `Authorization : Bearer accessToken`로 저장됌
-> 이후 세선 정보를 추가해줘야지 `Security`에서 제공하는 어노테이션 사용 가능
-
-## REST API 사용
+### REST API 사용
+> 자원을 이름(자원의 표현)으로 구분하여 해당 자원의 상태(정보)를 주고 받는 모든 것을 의미
 ### 기존 방식
 - 게시물 목록 : `GET` http://localhost:8080/article/list
 - 게시물 등록(폼) : `GET` http://localhost:8080/article/write
@@ -85,6 +82,8 @@ public static <K, V> Map<K, V> mapOf(Object... args) {
 - 게시물 단건 조회 : `GET` http://localhost:8080/article/1
 - 게시물 수정 : `PATCH` http://localhost:8080/article/1
 - 게시물 삭제 : `DELETE` http://localhost:8080/article/1
+
+---
 
 ## Spring Doc - Swagger
 > 주로 `REST API`를 구축 했을 때, 프론트 개발자에게 보여주기 위해 사용한다.<br>
@@ -121,3 +120,47 @@ public OpenAPI springShopOpenAPI() {
 }
 ```
 > `Swagger`에 작성해놓을 설명과 정보를 작성한다.
+
+---
+
+### `JWT` 사용
+> `Json` 포맷을 이용하여 사용자에 대한 속성을 저장하는 Claim 기반의 `Web Token`
+
+### Spring Security 로그인
+- 회원 정보가 일치하는지 확인
+- 세션 변수 생성 -> 시큐리티 방식
+> `@AuthenticationPrincipal MemberContext memberContext`는 세션에서 데이터를 꺼내옴
+
+### JWT 로그인
+> POST /member/login
+- 회원 정보가 일치하는지 확인
+- `JWT` 형식의 `accessToken`을 발급
+> `header`에 `Authorization : Bearer accessToken`로 저장됌
+> 이후 세선 정보를 추가해줘야지 `Security`에서 제공하는 어노테이션 사용 가능
+
+## JWT의 문제점과 해결 방안
+### 문제 1. 폐기가 불가능하고, 품고 있는 정보를 변경할 수 없다.
+> 닉네임 또는 이메일 같은 정보가 저장되어 있고, 토큰 발급 이후에 사용자가 이메일, 닉네임을 변경했다면 정보 불일치가 발생
+
+### 문제 2. 토큰 만료 기간이 길 때, 탈취를 당했다면 손을 쓸 수 없다. 
+> 만약 토큰의 만료 기간을 90일로 지정한 뒤 탈취를 당했다면, JWT 토큰의 구조상 폐기가 불가능하다.
+
+### 방안 1. 만료 기간을 짧게 5분 정도로 잡는다.
+```java
+// MemberService.java
+public String generateAccessToken(Member member) {
+    return jwtProvider.generateAccessToken(member.getAccessTokenClaims(), 60 * 5);
+}
+```
+> 5분마다 1번씩 로그인을 해줘야하는 번거로움이 있지만, `Refresh Token`을 사용해서 해결한다.<br>
+> 클라이언트에서는 `Access Token`과 `Refresh Token`을 가지고 있어야한다.
+- `Refresh Token`
+  - JWT 형식일 필요는 없으며, DB에서 관리되는 임시 키(비밀번호)라고 생각하자.
+  - 해당 Refresh Token으로 재로그인 즉, Access Token을 발급 받는게 가능하기 때문이다.
+
+### JWT Access Token 화이트리스트 방식
+> 블랙 리스트 ➡️ 문제가 되는 애들을 기억 <br>
+> 화이트 리스트 ➡️ 내가 인정한 애들만 기억
+- 최초에 발급된 액세스 토큰을 기록
+- 2번째 이후로 요청된 로그인에는 기존 엑세스 토큰을 반환
+- 서버에서 매 요청마다, 엑세스 토큰이 유효한지 체크하는 것을 넘어서, DB에 저장되어 있는 인증된 엑세스 토큰인지도 확인
