@@ -170,6 +170,17 @@ public String generateAccessToken(Member member) {
 > `Spring Boot`는 외부 캐시를 지정하지 않으면 `Map`과 같은 내부 메모리 캐시를 사용한다.
 > `Application`에서 `@EnableCaching` 어노테이션을 사용한다.
 
+### Setting
+`SpringBoot`에서 캐시를 사용하기 위해서는 아래와 같이 간단한 작업 하나만 진행하면 된다.
+```java
+// Application.java
+@...
+@EnableCaching
+public class SecurtyExamApplication {
+  ...
+}
+```
+
 ### 캐시 생성 예제
 ```java
 // MemberService
