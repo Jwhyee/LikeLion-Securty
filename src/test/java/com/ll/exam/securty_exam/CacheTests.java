@@ -1,27 +1,18 @@
 package com.ll.exam.securty_exam;
 
-import com.ll.exam.securty_exam.app.service.MemberService;
+import com.ll.exam.securty_exam.app.service.CacheTestService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.nio.charset.StandardCharsets;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @Transactional
@@ -29,16 +20,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class CacheTests {
 
     @Autowired
-    private MemberService memberService;
+    private CacheTestService cacheTestService;
 
     @Test
     @DisplayName("캐시 사용")
     void t1() {
-        int rs = memberService.getCachedInt();
+        int rs = cacheTestService.getCachedInt();
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
 
-        rs = memberService.getCachedInt();
+        rs = cacheTestService.getCachedInt();
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
     }
@@ -46,21 +37,21 @@ class CacheTests {
     @Test
     @DisplayName("캐시 사용, 삭제, 생성")
     void t2() {
-        int rs = memberService.getCachedInt();
+        int rs = cacheTestService.getCachedInt();
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
 
-        rs = memberService.getCachedInt();
+        rs = cacheTestService.getCachedInt();
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
 
-        rs = memberService.getCachedInt();
+        rs = cacheTestService.getCachedInt();
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
 
-        memberService.deleteCachedInt();
+        cacheTestService.deleteCachedInt();
 
-        rs = memberService.getCachedInt();
+        rs = cacheTestService.getCachedInt();
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
 
@@ -69,25 +60,45 @@ class CacheTests {
     @Test
     @DisplayName("캐시 사용, 수정, 사용")
     void t3() {
-        int rs = memberService.getCachedInt();
+        int rs = cacheTestService.getCachedInt();
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
 
-        rs = memberService.getCachedInt();
+        rs = cacheTestService.getCachedInt();
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
 
-        rs = memberService.getCachedInt();
+        rs = cacheTestService.getCachedInt();
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
 
-        rs = memberService.updateCachedInt();
+        rs = cacheTestService.updateCachedInt();
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
 
-        rs = memberService.getCachedInt();
+        rs = cacheTestService.getCachedInt();
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
 
+    }
+
+    @Test
+    @DisplayName("캐시 조건 파라미터")
+    void t4() {
+        int rs = cacheTestService.plus(3, 6);
+        assertThat(rs).isGreaterThan(0);
+        System.out.println("rs = " + rs);
+
+        rs = cacheTestService.plus(3, 6);
+        assertThat(rs).isGreaterThan(0);
+        System.out.println("rs = " + rs);
+
+        rs = cacheTestService.plus(5, 2);
+        assertThat(rs).isGreaterThan(0);
+        System.out.println("rs = " + rs);
+
+        rs = cacheTestService.plus(5, 2);
+        assertThat(rs).isGreaterThan(0);
+        System.out.println("rs = " + rs);
     }
 }
