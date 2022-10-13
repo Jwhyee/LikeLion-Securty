@@ -168,7 +168,34 @@ public String generateAccessToken(Member member) {
 
 ## Cache
 > `Spring Boot`는 외부 캐시를 지정하지 않으면 `Map`과 같은 내부 메모리 캐시를 사용한다.
-> Application에서 @EnableCaching 어노테이션을 사용한다. 
+> `Application`에서 `@EnableCaching` 어노테이션을 사용한다.
+
+### 캐시 예제
+```java
+// MemberService
+@Cacheable("key1")
+public int getCachedInt() {
+    System.out.println("호출됨");
+    return 5;
+}
+```
+
+```java
+// CacheTests
+@Test
+@DisplayName("캐시 사용")
+void t1() {
+    int rs = memberService.getCachedInt();
+    assertThat(rs).isGreaterThan(0);
+    System.out.println("rs = " + rs);
+    
+    rs = memberService.getCachedInt();
+    assertThat(rs).isGreaterThan(0);
+    System.out.println("rs = " + rs);
+}
+```
+> 위와 같이 `@Cachable("keyName")`을 사용하면 처음 호출이 될 때 `keyName`에 `return` 값을 저장하고,<br>
+> 다음 호출이 될 때부터는 함수를 다시 실행하는 것이 아닌 저장된 `keyName`의 `value`를 불러오게 된다.
 
 ---
 ## Redis

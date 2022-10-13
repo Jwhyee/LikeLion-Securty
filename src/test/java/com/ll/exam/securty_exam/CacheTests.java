@@ -34,19 +34,11 @@ class CacheTests {
     @Test
     @DisplayName("캐시 사용")
     void t1() {
-        // Given
         int rs = memberService.getCachedInt();
-        // When
-
-        // Then
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
 
-        // Given
         rs = memberService.getCachedInt();
-        // When
-
-        // Then
         assertThat(rs).isGreaterThan(0);
         System.out.println("rs = " + rs);
     }
