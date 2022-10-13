@@ -27,11 +27,11 @@ class CacheTests {
     @DisplayName("캐시 사용")
     void t1() {
         int rs = cacheTestService.getCachedInt();
-        assertThat(rs).isGreaterThan(0);
+        assertThat(rs).isEqualTo(5);
         System.out.println("rs = " + rs);
 
         rs = cacheTestService.getCachedInt();
-        assertThat(rs).isGreaterThan(0);
+        assertThat(rs).isEqualTo(5);
         System.out.println("rs = " + rs);
     }
 
@@ -39,21 +39,21 @@ class CacheTests {
     @DisplayName("캐시 사용, 삭제, 생성")
     void t2() {
         int rs = cacheTestService.getCachedInt();
-        assertThat(rs).isGreaterThan(0);
+        assertThat(rs).isEqualTo(5);
         System.out.println("rs = " + rs);
 
         rs = cacheTestService.getCachedInt();
-        assertThat(rs).isGreaterThan(0);
+        assertThat(rs).isEqualTo(5);
         System.out.println("rs = " + rs);
 
         rs = cacheTestService.getCachedInt();
-        assertThat(rs).isGreaterThan(0);
+        assertThat(rs).isEqualTo(5);
         System.out.println("rs = " + rs);
 
         cacheTestService.deleteCachedInt();
 
         rs = cacheTestService.getCachedInt();
-        assertThat(rs).isGreaterThan(0);
+        assertThat(rs).isEqualTo(5);
         System.out.println("rs = " + rs);
 
     }
@@ -62,23 +62,23 @@ class CacheTests {
     @DisplayName("캐시 사용, 수정, 사용")
     void t3() {
         int rs = cacheTestService.getCachedInt();
-        assertThat(rs).isGreaterThan(0);
+        assertThat(rs).isEqualTo(5);
         System.out.println("rs = " + rs);
 
         rs = cacheTestService.getCachedInt();
-        assertThat(rs).isGreaterThan(0);
+        assertThat(rs).isEqualTo(5);
         System.out.println("rs = " + rs);
 
         rs = cacheTestService.getCachedInt();
-        assertThat(rs).isGreaterThan(0);
+        assertThat(rs).isEqualTo(5);
         System.out.println("rs = " + rs);
 
         rs = cacheTestService.updateCachedInt();
-        assertThat(rs).isGreaterThan(0);
+        assertThat(rs).isEqualTo(10);
         System.out.println("rs = " + rs);
 
         rs = cacheTestService.getCachedInt();
-        assertThat(rs).isGreaterThan(0);
+        assertThat(rs).isEqualTo(10);
         System.out.println("rs = " + rs);
 
     }
@@ -88,27 +88,27 @@ class CacheTests {
     void t4() {
         // 캐시 생성(rs = 9)
         int rs = cacheTestService.plus(3, 6);
-        assertThat(rs).isGreaterThan(0);
+        assertThat(rs).isEqualTo(9);
         System.out.println("rs = " + rs);
 
         // 캐시 사용(rs = 9)
         rs = cacheTestService.plus(3, 6);
-        assertThat(rs).isGreaterThan(0);
+        assertThat(rs).isEqualTo(9);
         System.out.println("rs = " + rs);
 
         // 캐시 생성(rs = 7)
         rs = cacheTestService.plus(5, 2);
-        assertThat(rs).isGreaterThan(0);
+        assertThat(rs).isEqualTo(7);
         System.out.println("rs = " + rs);
 
         // 캐시 사용(rs = 7)
         rs = cacheTestService.plus(5, 2);
-        assertThat(rs).isGreaterThan(0);
+        assertThat(rs).isEqualTo(7);
         System.out.println("rs = " + rs);
 
         // 캐시 사용(rs = 9)
         rs = cacheTestService.plus(3, 6);
-        assertThat(rs).isGreaterThan(0);
+        assertThat(rs).isEqualTo(9);
         System.out.println("rs = " + rs);
     }
 
