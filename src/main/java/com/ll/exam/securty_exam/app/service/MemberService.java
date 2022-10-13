@@ -4,6 +4,7 @@ import com.ll.exam.securty_exam.app.config.jwt.JwtProvider;
 import com.ll.exam.securty_exam.app.domain.member.Member;
 import com.ll.exam.securty_exam.app.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -33,5 +34,11 @@ public class MemberService {
 
     public String generateAccessToken(Member member) {
         return jwtProvider.generateAccessToken(member.getAccessTokenClaims(), 60 * 60 * 24 * 90);
+    }
+
+    @Cacheable("key1")
+    public int getCachedInt() {
+        System.out.println("호출됨");
+        return 5;
     }
 }

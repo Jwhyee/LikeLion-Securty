@@ -164,7 +164,13 @@ public String generateAccessToken(Member member) {
 - 최초에 발급된 액세스 토큰을 기록
 - 2번째 이후로 요청된 로그인에는 기존 엑세스 토큰을 반환
 - 서버에서 매 요청마다, 엑세스 토큰이 유효한지 체크하는 것을 넘어서, DB에 저장되어 있는 인증된 엑세스 토큰인지도 확인
+---
 
+## Cache
+> `Spring Boot`는 외부 캐시를 지정하지 않으면 `Map`과 같은 내부 메모리 캐시를 사용한다.
+> Application에서 @EnableCaching 어노테이션을 사용한다. 
+
+---
 ## Redis
 > Redis는 key : value로 이루어진 NoSQL이다.
 
