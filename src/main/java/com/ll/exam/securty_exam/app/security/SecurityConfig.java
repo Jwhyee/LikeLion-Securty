@@ -20,8 +20,8 @@ public class SecurityConfig {
         http
                 .authorizeRequests(
                         authorizeRequests -> authorizeRequests
-                                .antMatchers("/member/login", "/member/join")
-                                .permitAll()
+                                .antMatchers("/member/login", "/member/join").permitAll()
+                                .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                                 .anyRequest()
                                 .authenticated() // 최소자격 : 로그인
                 )
