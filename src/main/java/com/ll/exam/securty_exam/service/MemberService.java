@@ -51,8 +51,9 @@ public class MemberService {
         return member.getAccessToken().equals(token);
     }
 
-    @Cacheable("MemberService__getByUsername")
+    @Cacheable("member")
     public Member getByUsername__cached(String username) {
+        // 회원 정보가 수정되면 @CacheEvict("member)를 이용해서 지워주고 다시 캐시에 등록해주어야함.
         return findByUsername(username).orElse(null);
     }
 }
