@@ -273,8 +273,11 @@ void t2() {
 }
 ```
 ---
-## Redis
+## Redis 연동
 > Redis는 key : value로 이루어진 NoSQL이다.
+
+> SpringBoot 내부 캐시 : 자바 자료구조 100% 활용 가능<br>
+> SpringBoot Redis 캐시 : List, Map을 제외한 사용자 정의 객체는 재정의 해주어야 함
 
 ### Redis 설치
 ```bash
